@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import DisplayCounter from "./components/DisplayCounter";
 import Container from "./Container";
 import Controls from "./components/Controls";
+import "./App.css";
 const App = () => {
   return (
     <>
