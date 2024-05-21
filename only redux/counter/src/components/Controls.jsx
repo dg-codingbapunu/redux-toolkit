@@ -10,6 +10,9 @@ const Controls = () => {
   const handleMinus = () => {
     dispatch({ type: "DECREMENT" });
   };
+  const handleToggle = () => {
+    dispatch({ type: "PRIVACYTOGGLE" });
+  };
   const handleAdd = () => {
     dispatch({
       type: "ADD",
@@ -38,6 +41,14 @@ const Controls = () => {
 
         <button type="button" className="btn btn-success" onClick={handleMinus}>
           -1
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-warning"
+          onClick={handleToggle}
+        >
+          Privacy Toggle
         </button>
       </div>
       <div className="d-grid gap-2 d-sm-flex justify-content-sm-center top ">
