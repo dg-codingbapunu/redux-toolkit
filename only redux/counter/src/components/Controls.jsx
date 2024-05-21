@@ -1,73 +1,76 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { counterActions } from "../store/counter";
+import { privacyActions } from "../store/privacy";
 
 const Controls = () => {
   const dispatch = useDispatch();
   const inputElement = useRef();
-  const handlePlus = () => {
-    dispatch({ type: "INCREMENT" });
+
+  const handleIncrement = () => {
+    dispatch(counterActions.increment());
   };
-  const handleMinus = () => {
-    dispatch({ type: "DECREMENT" });
+
+  const handleDecrement = () => {
+    dispatch(counterActions.decrement());
   };
-  const handleToggle = () => {
-    dispatch({ type: "PRIVACYTOGGLE" });
+
+  const handlePrivacyToggle = () => {
+    dispatch(privacyActions.toggle());
   };
+
   const handleAdd = () => {
-    dispatch({
-      type: "ADD",
-      payload: {
-        num: inputElement.current.value,
-      },
-    });
+    dispatch(counterActions.add(inputElement.current.value));
     inputElement.current.value = "";
   };
-  const handleSubstract = () => {
-    dispatch({
-      type: "SUBSTRACT",
-      payload: {
-        num: inputElement.current.value,
-      },
-    });
+
+  const handleSubtract = () => {
+    dispatch(counterActions.subtract(inputElement.current.value));
     inputElement.current.value = "";
   };
 
   return (
     <>
-      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center ">
-        <button type="button" className="btn btn-primary" onClick={handlePlus}>
+      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleIncrement}
+        >
           +1
         </button>
-
-        <button type="button" className="btn btn-success" onClick={handleMinus}>
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={handleDecrement}
+        >
           -1
         </button>
-
         <button
           type="button"
           className="btn btn-warning"
-          onClick={handleToggle}
+          onClick={handlePrivacyToggle}
         >
           Privacy Toggle
         </button>
       </div>
-      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center top ">
+      <div className="d-grid gap-2 d-sm-flex justify-content-sm-center control-row">
         <input
           type="text"
-          placeholder="Enter numbers"
+          placeholder="Enter number"
           className="number-input"
           ref={inputElement}
         />
-
         <button type="button" className="btn btn-info" onClick={handleAdd}>
           Add
         </button>
+
         <button
           type="button"
           className="btn btn-danger"
-          onClick={handleSubstract}
+          onClick={handleSubtract}
         >
-          Substract
+          Subtract
         </button>
       </div>
     </>
